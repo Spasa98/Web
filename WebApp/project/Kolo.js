@@ -88,6 +88,15 @@ export class Kolo {
     let goloviGost =this.kontejner.getElementsByClassName("broj-golova-gost")[0];
     let datum = this.kontejner.getElementsByClassName("datumivreme")[0];
 
+    if(goloviDomacin==="")
+    {
+      alert("Unesi golove domacina");
+    }
+    if(goloviGost==="")
+    {
+      alert("Unesi golove gosta");
+    }
+    
     fetch(
       `https://localhost:5001/Utakmica/AzurirajUtakmicu/
       ${goloviGost.value}/${goloviDomacin.value}/${datum.value}
@@ -112,15 +121,26 @@ export class Kolo {
   dodajUtakmicu() {
     // this.kontejner.remove()
     let gostID = this.kontejner.getElementsByClassName("selekt-gost")[0].value;
-    let domacinID =
-      this.kontejner.getElementsByClassName("selekt-domacin")[0].value;
-    let goloviDomacin = this.kontejner.getElementsByClassName(
-      "broj-golova-domacin"
-    )[0].value;
-    let goloviGost =
-      this.kontejner.getElementsByClassName("broj-golova-gost")[0].value;
+    let domacinID =this.kontejner.getElementsByClassName("selekt-domacin")[0].value;
+    let goloviDomacin = this.kontejner.getElementsByClassName("broj-golova-domacin")[0].value;
+    let goloviGost =this.kontejner.getElementsByClassName("broj-golova-gost")[0].value;
     let datum = this.kontejner.getElementsByClassName("datumivreme")[0].value;
-    console.log(gostID);
+    if(gostID==="")
+    {
+      alert("Odaberi gostujucu ekipu");
+    }
+    if(domacinID==="")
+    {
+      alert("Odaberi domacu ekipu");
+    }
+    if(goloviDomacin==="")
+    {
+      alert("Unesi golove domacina");
+    }
+    if(goloviGost==="")
+    {
+      alert("Unesi golove gosta");
+    }
 
     fetch(
       `https://localhost:5001/Utakmica/DodajUtakmicu/${gostID}/${domacinID}/${this.id}/${goloviDomacin}/${goloviGost}/${datum}`,

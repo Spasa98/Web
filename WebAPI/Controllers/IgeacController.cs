@@ -146,15 +146,15 @@ namespace Server.Controllers
             }
         }
 
-        [Route("IzmeniStrelca/{strelacID}")]
+        [Route("IzmeniStrelca/{strelacID}/{igracID}/{minutGola}")]
         [HttpPut]
-        public async Task<ActionResult> IzmeniStrelca(int strelcaID,int igracID,int minutGola)
+        public async Task<ActionResult> IzmeniStrelca(int strelacID,int igracID,int minutGola)
         {
             try
             {  
                 // int strelciDomacina=0;
                 // int strelciGostiju=0;
-                Strelac strelac=await this.Context.Strelci.Where(x=>x.ID==strelcaID).FirstOrDefaultAsync();
+                Strelac strelac=await this.Context.Strelci.Where(x=>x.ID==strelacID).FirstOrDefaultAsync();
 				if(strelac == null)
 					return NotFound("Strelac ne postoji");
                 Igrac igrac=await this.Context.Igraci.Where(x=>x.ID==igracID).FirstOrDefaultAsync();

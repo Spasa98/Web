@@ -203,6 +203,7 @@ namespace Server.Controllers
                         new
                         {
                             idstrelac=q.ID,
+                            igracID=q.StrelacIgrac.ID,
                             igrac=q.StrelacIgrac.Ime +" "+q.StrelacIgrac.Prezime+" "+q.StrelacIgrac.BrojNaDresu,
                             gol=q.minutGola,
                             ekipa=q.StrelacIgrac.IgracEkipe.ID,

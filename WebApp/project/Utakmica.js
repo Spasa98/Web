@@ -159,6 +159,48 @@ export class Utakmica {
     this.crtajPrikaz(this.kontejnerPrikaz);
   }
 
+  kreirajFormu(host) {
+    let vratiSeNaPocetak = kreirajDugme(
+      "submit-button",
+      "Pocetna stranica"
+    );
+
+    fetch(`https://localhost:5001/Ekipa/IgraciEkipe/${this.idDomacina}/${this.idGosta}`).then((response) => {
+      response.json().then((igraci) => {
+        console.log(igraci);
+        let igrac = new Igrac(igraci);
+        igrac.crtaj(host, "selekt-igrac", "Igraci ekipa:");
+
+        kreirajInput(
+          host,
+          "minutgola input",
+          "Minut postignutog gola:",
+          "number"
+        );
+        let dodajStrelca = kreirajDugme(
+          "submit-button posalji",
+          "Posalji"
+        );
+        host.appendChild(dodajStrelca)
+        dodajStrelca.addEventListener("click", (event) => {
+          if(event.target.getAttribute("data-id"))
+          {
+            this.izmeniStrelca(event.target.getAttribute("data-id"))
+          }
+          else{
+            this.dodajStrelca();
+          }
+        });
+
+     
+
+      })
+    })
+    host.appendChild(vratiSeNaPocetak);
+        vratiSeNaPocetak.addEventListener("click", () => {
+          this.vratiSeNaPocetnuStranicu();
+        });
+  }
 
   crtajPrikaz(host,strelacID)
   {
@@ -211,7 +253,7 @@ export class Utakmica {
             let footer = document.createElement("div");
             footer.classList = "redDugmici";
             let izmeniStrelcaDugme = this.kreirajDugme(
-              "obrisi-strelca",
+              "izmeni-strelca",
               "Izmeni"
             );
             let obrisiStrelcaDugme = this.kreirajDugme(
@@ -222,14 +264,13 @@ export class Utakmica {
             obrisiStrelcaDugme.setAttribute("data-id", detalji.strelci[i].idstrelac);
             obrisiStrelcaDugme.onclick = (event) => this.obrisiStrelca(event.target.getAttribute("data-id"));
           
-            izmeniStrelcaDugme.setAttribute("data-id",detalji.strelci[i].idstrelac,);
-            izmeniStrelcaDugme.setAttribute("data-igrac",detalji.strelci[i].igrac);
+            izmeniStrelcaDugme.setAttribute("data-id",detalji.strelci[i].idstrelac);
+            izmeniStrelcaDugme.setAttribute("data-igrac",detalji.strelci[i].igracID);
             izmeniStrelcaDugme.setAttribute("data-gol",detalji.strelci[i].gol);
-            izmeniStrelcaDugme.onclick = (event) => this.izmeniStrelca(event.target.getAttribute("data-id"),event.target.getAttribute("data-igrac"),event.target.getAttribute("data-gol"));
+            izmeniStrelcaDugme.onclick = (event) => this.izmeniKlik(event.target.getAttribute("data-id"),event.target.getAttribute("data-igrac"),event.target.getAttribute("data-gol"));
             
             
-            
-
+          
             footer.appendChild(izmeniStrelcaDugme)
             footer.appendChild(obrisiStrelcaDugme)
             host.appendChild(footer)  
@@ -237,13 +278,56 @@ export class Utakmica {
       })
     })
  }
-izmeniStrelca(id,igrac,minut)
+
+izmeniKlik(id,igracid,minut)
 {
-  console.log(id,igrac,minut);
+  console.log(id,igracid,minut);
   let kontejnerForma = document.body.getElementsByClassName("kontejner-forme")[0];
   let minutgola =kontejnerForma.getElementsByClassName("minutgola")[0];
   minutgola.value = minut;
-  
+  let igracselect=kontejnerForma.getElementsByClassName("selekt-igrac")[0];
+  console.log(igracselect);
+  igracselect.value = igracid;
+  let dugme=kontejnerForma.getElementsByClassName("posalji")[0];
+  dugme.setAttribute("data-id",id);
+
+}
+izmeniStrelca(id)
+{
+  let kontejnerForma = document.body.getElementsByClassName("kontejner-forme")[0];
+  let igracselect=kontejnerForma.getElementsByClassName("selekt-igrac")[0];
+  let idigraca=igracselect.value
+  let minutgola =kontejnerForma.getElementsByClassName("minutgola")[0];
+  let gol=minutgola.value
+  let dugme=kontejnerForma.getElementsByClassName("posalji")[0];
+
+  if(minutgola.value==="")
+  {
+    alert("Unesite minut postignutog gola");
+  }
+  if(igracselect.value==="")
+  {
+    alert("Odaberite igraca");
+  }
+
+  fetch(`https://localhost:5001/Igrac/IzmeniStrelca/${id}/${idigraca}/${gol}`,
+  {
+    method: "PUT",
+  }
+  ).then((response) => {
+    response.json().then((resp) => {
+      console.log(resp);
+      if (resp.id) 
+      {
+        dugme.removeAttribute("data-id");
+        minutgola.value="";
+        igracselect.value="";
+        this.kontejnerPrikaz.innerHTML=""
+        this.crtajPrikaz(this.kontejnerPrikaz);
+
+      }
+    });
+  });  
 }
  obrisiStrelca(strelacid)
  {
@@ -258,61 +342,26 @@ izmeniStrelca(id,igrac,minut)
       {
         this.kontejnerPrikaz.innerHTML=""
         this.crtajPrikaz(this.kontejnerPrikaz);
+
        
       }
       });
     });
   }
 
-  crtajRed(host,classes)
-  {
-      let red = document.createElement("div");
-      red.className = classes;
-      host.appendChild(red);
-      return red;
-  }
-
-  kreirajFormu(host) {
-    let vratiSeNaPocetak = kreirajDugme(
-      "submit-button",
-      "Pocetna stranica"
-    );
-
-    fetch(`https://localhost:5001/Ekipa/IgraciEkipe/${this.idDomacina}/${this.idGosta}`).then((response) => {
-      response.json().then((igraci) => {
-        console.log(igraci);
-        let igrac = new Igrac(igraci);
-        igrac.crtaj(host, "selekt-igrac", "Igraci ekipa:");
-
-        kreirajInput(
-          host,
-          "minutgola input",
-          "Minut postignutog gola:",
-          "number"
-        );
-        let dodajStrelca = kreirajDugme(
-          "submit-button",
-          "Dodaj strelca"
-        );
-        host.appendChild(dodajStrelca)
-        dodajStrelca.addEventListener("click", () => {
-          this.dodajStrelca();
-        });
-
-     
-
-      })
-    })
-    host.appendChild(vratiSeNaPocetak);
-        vratiSeNaPocetak.addEventListener("click", () => {
-          this.vratiSeNaPocetnuStranicu();
-        });
-  }
-
   dodajStrelca()
   {
     let igrac = this.kontejnerDetaljiUtakmice.getElementsByClassName("selekt-igrac")[0].value;
     let minutgola = this.kontejnerDetaljiUtakmice.getElementsByClassName("minutgola")[0].value;
+
+    if(minutgola==="")
+    {
+      alert("Unesite minut postignutog gola");
+    }
+    if(igrac==="")
+    {
+      alert("Odaberite igraca");
+    }
 
     console.log(minutgola);
     fetch(`https://localhost:5001/Igrac/DodajStrelca/${igrac}/${this.id}/${minutgola}`,
@@ -331,7 +380,6 @@ izmeniStrelca(id,igrac,minut)
   });
   }
 
-
   vratiSeNaPocetnuStranicu()
   {
     let brisanjeSadrzaja = document.body.getElementsByClassName("glavni-kontejner")[0];
@@ -348,5 +396,12 @@ izmeniStrelca(id,igrac,minut)
           });
       })
     });
+  }
+  crtajRed(host,classes)
+  {
+      let red = document.createElement("div");
+      red.className = classes;
+      host.appendChild(red);
+      return red;
   }
 }

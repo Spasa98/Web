@@ -4,21 +4,29 @@
     box-sizing: border-box;
     font-family: Arial, Helvetica, sans-serif;
 } */
-.input
-{
-    padding: 0.25rem;
+.glavni-kontejner{
+    display: flex;
     border-width: 1px;
-    margin-bottom: 0.5rem;
+    margin: 1rem;
+    padding: 1.25rem
 }
-.labela
+.kontejner-forme{
+    width: 220px;
+}
+
+.naslovRBRKola
 {
-    color:white;
+    text-transform: uppercase;
+    font-weight: 700; /*bolirane*/
+    margin-bottom: 0.5rem
 }
-.labelap{
-    color: rgb(132 204 22);
-}
-.labelag{
-    color: rgb(244 63 94)
+
+.kontejner-utakmice
+{
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0.75rem;
+    margin-left: 1rem;
 }
 .kontejner-jedne-utakmice
 {
@@ -42,43 +50,6 @@
     background-color: rgb(241 245 249);
     margin-bottom: 0.5rem;
 }
-.footer-jedne-utakmice
-{
-    display: flex;
-    margin-top: 0,5rem;
-}
-.izmeni-dugme-jedne-utakmice,.obrisi-dugme-jedne-utakmice,.opsirnije-dugme,.obrisi-strelca
-{
-    font-size: 0.75rem;
-    line-height: 1rem;
-    padding: 0.25rem;
-    margin-left: 0.5rem;
-    cursor: pointer;
-    
-}
-.izmeni-dugme-jedne-utakmice
-{
-    color: rgb(59 130 246);
-    background-color: rgb(239 246 255);
-}
-.obrisi-dugme-jedne-utakmice
-{
-    color: rgb(244 63 94);
-    background-color: rgb(255 241 242);
-}
-.opsirnije-dugme
-{
-    background-color: rgb(255, 252, 232);
-    color: rgb(251, 255, 0);
-}
-.obrisi-strelca
-{
-    background-color: rgb(16, 22, 32);
-    border-bottom-width: 2px;
-    color: rgb(244 63 94);
-    border-color: rgb(244 63 94);
-}
-
 .header-rezultat
 {
     background-color: rgb(244 63 94);
@@ -87,54 +58,12 @@
     margin-left: 0.5rem;
     margin-right: 0.5rem;
 }
-
-.submit-button
-{
-    padding-left: 1rem;
-    padding-right: 1rem;
-    width: 200px;
-    margin-top: 0.5rem;
-    padding: 0.5rem;
-    cursor: pointer;
-    background-color: rgb(30 41 59);
-    color: white;
-}
-.glavni-kontejner{
-    display: flex;
-    border-width: 1px;
-    margin: 1rem;
-    padding: 1.25rem
-}
-.naslovRBRKola
-{
-    text-transform: uppercase;
-    font-weight: 700; /*bolirane*/
-    margin-bottom: 0.5rem
-}
-.kontejner-utakmice
-{
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 0.75rem;
-    margin-left: 1rem;
-
-}
-.select-kontejner,.input-kontejner
+.footer-jedne-utakmice
 {
     display: flex;
-    flex-direction: column;
-    width: 100%;
-    font-size: 0.875rem;
-    line-height: 1.25rem;
-    flex-direction: column;
+    margin-top: 0,5rem;
 }
-.selekt-domacin,.select-igrac
-{
-    padding: 0.25rem;
-    border-width: 1px;
-    margin-bottom: 0.5rem;
-    text-transform: none;
-}
+/* ========================================================================== */
 .kontejner-prikaz-utakmice
 {
     display: flex;
@@ -146,6 +75,7 @@
     border-width: 2px;
     border-color: rgb(16, 22, 32);
 }
+
 .redKola,.redUtakmice,.redStrelacD,.redStrelacG,.redDugmici
 {
     display: flex;
@@ -179,10 +109,99 @@
 {
     flex-direction: row-reverse;
 }
-
-.kontejner-forme{
-    width: 220px;
+/* ======================================================================================== */
+.input
+{
+    padding: 0.25rem;
+    border-width: 1px;
+    margin-bottom: 0.5rem;
 }
+.labela
+{
+    color:white;
+}
+.labelap{
+    color: rgb(132 204 22);
+}
+.labelag{
+    color: rgb(244 63 94)
+}
+
+.izmeni-dugme-jedne-utakmice,.obrisi-dugme-jedne-utakmice,.opsirnije-dugme,.obrisi-strelca,.izmeni-strelca
+{
+    font-size: 0.75rem;
+    line-height: 1rem;
+    padding: 0.25rem;
+    margin-left: 0.5rem;
+    cursor: pointer;
+    
+}
+.izmeni-dugme-jedne-utakmice
+{
+    color: rgb(59 130 246);
+    background-color: rgb(239 246 255);
+}
+.obrisi-dugme-jedne-utakmice
+{
+    color: rgb(244 63 94);
+    background-color: rgb(255 241 242);
+}
+.opsirnije-dugme
+{
+    background-color: rgb(255, 252, 232);
+    color: rgb(251, 255, 0);
+}
+.obrisi-strelca
+{
+    background-color: rgb(16, 22, 32);
+    border-bottom-width: 2px;
+    color: rgb(244 63 94);
+    border-color: rgb(244 63 94);
+}
+.izmeni-strelca
+{
+    background-color: rgb(16, 22, 32);
+    border-bottom-width: 2px;
+    color: rgb(132 204 22);
+    border-color: rgb(132 204 22);
+}
+
+
+
+.submit-button
+{
+    padding-left: 1rem;
+    padding-right: 1rem;
+    width: 200px;
+    margin-top: 0.5rem;
+    padding: 0.5rem;
+    cursor: pointer;
+    background-color: rgb(30 41 59);
+    color: white;
+}
+
+
+
+.select-kontejner,.input-kontejner
+{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+    flex-direction: column;
+}
+.selekt-domacin,.select-igrac
+{
+    padding: 0.25rem;
+    border-width: 1px;
+    margin-bottom: 0.5rem;
+    text-transform: none;
+}
+
+
+
+
 @media screen and (max-width:900px) {
     .kontejner-utakmice{
         grid-template-columns: repeat(2, minmax(0, 1fr));
