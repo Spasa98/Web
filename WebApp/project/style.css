@@ -1,0 +1,212 @@
+/* *{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+} */
+.input
+{
+    padding: 0.25rem;
+    border-width: 1px;
+    margin-bottom: 0.5rem;
+}
+.labela
+{
+    color:white;
+}
+.labelap{
+    color: rgb(132 204 22);
+}
+.labelag{
+    color: rgb(244 63 94)
+}
+.kontejner-jedne-utakmice
+{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-width: 1px; 
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+    padding: 0.75rem;
+    width: 100%;
+    margin:0.5rem;
+}
+.header-jedne-utakmice
+{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem;
+    background-color: rgb(241 245 249);
+    margin-bottom: 0.5rem;
+}
+.footer-jedne-utakmice
+{
+    display: flex;
+    margin-top: 0,5rem;
+}
+.izmeni-dugme-jedne-utakmice,.obrisi-dugme-jedne-utakmice,.opsirnije-dugme,.obrisi-strelca
+{
+    font-size: 0.75rem;
+    line-height: 1rem;
+    padding: 0.25rem;
+    margin-left: 0.5rem;
+    cursor: pointer;
+    
+}
+.izmeni-dugme-jedne-utakmice
+{
+    color: rgb(59 130 246);
+    background-color: rgb(239 246 255);
+}
+.obrisi-dugme-jedne-utakmice
+{
+    color: rgb(244 63 94);
+    background-color: rgb(255 241 242);
+}
+.opsirnije-dugme
+{
+    background-color: rgb(255, 252, 232);
+    color: rgb(251, 255, 0);
+}
+.obrisi-strelca
+{
+    background-color: rgb(16, 22, 32);
+    border-bottom-width: 2px;
+    color: rgb(244 63 94);
+    border-color: rgb(244 63 94);
+}
+
+.header-rezultat
+{
+    background-color: rgb(244 63 94);
+    color: rgb(255 255 255);
+    padding: 0.25rem;
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+}
+
+.submit-button
+{
+    padding-left: 1rem;
+    padding-right: 1rem;
+    width: 200px;
+    margin-top: 0.5rem;
+    padding: 0.5rem;
+    cursor: pointer;
+    background-color: rgb(30 41 59);
+    color: white;
+}
+.glavni-kontejner{
+    display: flex;
+    border-width: 1px;
+    margin: 1rem;
+    padding: 1.25rem
+}
+.naslovRBRKola
+{
+    text-transform: uppercase;
+    font-weight: 700; /*bolirane*/
+    margin-bottom: 0.5rem
+}
+.kontejner-utakmice
+{
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0.75rem;
+    margin-left: 1rem;
+
+}
+.select-kontejner,.input-kontejner
+{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+    flex-direction: column;
+}
+.selekt-domacin,.select-igrac
+{
+    padding: 0.25rem;
+    border-width: 1px;
+    margin-bottom: 0.5rem;
+    text-transform: none;
+}
+.kontejner-prikaz-utakmice
+{
+    display: flex;
+    width:100%;
+    padding: 1rem;
+    margin: 1rem;
+    flex-wrap:wrap;
+    background-color: rgb(30 41 59);
+    border-width: 2px;
+    border-color: rgb(16, 22, 32);
+}
+.redKola,.redUtakmice,.redStrelacD,.redStrelacG,.redDugmici
+{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    width: 100%;
+    padding: 1.25rem;
+    margin: 0.25rem;
+}
+.redKola,.redUtakmice,.redStrelacD,.redStrelacG
+{
+    justify-content: space-between;
+}
+.redDugmici
+{
+    justify-content: center;
+    border-bottom-width: 2px;
+    border-color: rgb(16, 22, 32);
+}
+.redKola,.redUtakmice
+{   
+    flex-direction: row;
+    border-width: 2px;
+    border-color: rgb(51 65 85);
+}
+.redStrelacD
+{
+    flex-direction: row;
+}
+.redStrelacG
+{
+    flex-direction: row-reverse;
+}
+
+.kontejner-forme{
+    width: 220px;
+}
+@media screen and (max-width:900px) {
+    .kontejner-utakmice{
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+@media screen and (max-width:700px) {
+    .kontejner-utakmice{
+        grid-template-columns: repeat(1, minmax(0, 1fr));
+    }
+}
+@media screen and (max-width: 500px) {
+    .glavni-kontejner{
+        flex-flow: column;
+    }
+    .kontejner-forme{
+        width: 100%;
+    }
+    .kontejner-utakmice{
+        margin-left: 0px;
+        margin-top: 1.5rem;
+    }
+    .kontejner-prikaz-utakmice
+    {
+        margin-left: 0px;
+        margin-top: 1.5rem;
+    }
+}
